@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Salon Name] | Premium Grooming & Styling</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --bg-color: #fdfbf7; /* Light Beige */
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --accent: #c5a059; /* Luxury Gold/Bronze */
+            --white: #ffffff;
+            --section-padding: 80px 10%;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-dark); 
+            line-height: 1.6; 
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 10%; background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px); z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover; background-position: center; color: var(--white);
+            padding: 0 20px;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; max-width: 600px; }
+        
+        .btn {
+            padding: 15px 35px; background: var(--accent); color: var(--white);
+            font-weight: 600; border-radius: 2px; transition: var(--transition);
+            display: inline-block; border: 1px solid var(--accent);
+        }
+        .btn:hover { background: transparent; color: var(--white); border-color: var(--white); }
+
+        /* --- SERVICES --- */
+        .services { padding: var(--section-padding); text-align: center; }
+        .section-title { margin-bottom: 50px; font-size: 2.5rem; }
+        .service-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--white); padding: 40px; border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .service-card i { font-size: 2rem; color: var(--accent); margin-bottom: 15px; display: block; }
+
+        /* --- ABOUT --- */
+        .about { padding: var(--section-padding); background: #f4f1ec; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .about-content { flex: 1; min-width: 300px; }
+        .about-image { flex: 1; min-width: 300px; height: 400px; background: url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80') center/cover; }
+
+        /* --- GALLERY --- */
+        .gallery { padding: var(--section-padding); }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .gallery-item { height: 300px; overflow: hidden; background: #ddd; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; opacity: 0.9; }
+        .gallery-item:hover img { transform: scale(1.1); opacity: 1; }
+
+        /* --- CONTACT & LOCATION --- */
+        .contact { padding: var(--section-padding); display: flex; gap: 50px; flex-wrap: wrap; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .map-placeholder { flex: 1; min-width: 300px; height: 400px; background: #eee; border: none; }
+
+        /* --- WHATSAPP FLOAT --- */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25d366; color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 1000;
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 50px 10%; background: var(--text-dark); color: #999; text-align: center; }
+        footer h2 { color: var(--white); margin-bottom: 20px; }
+        .footer-links { margin: 20px 0; display: flex; justify-content: center; gap: 20px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Mobile menu simplified for speed */
+            .section-padding { padding: 50px 5%; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">[SALON NAME]</div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Premium Salon Experience in [City]</h1>
+        <p>Expert styling and luxury grooming services tailored to your unique look. Precision meets relaxation.</p>
+        <a href="https://wa.me/[Phone]" class="btn">Book on WhatsApp</a>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>Haircut</h3>
+                <p>Modern and classic cuts tailored to your face shape.</p>
+            </div>
+            <div class="service-card">
+                <h3>Beard Styling</h3>
+                <p>Precise trimming and shaping for the modern gentleman.</p>
+            </div>
+            <div class="service-card">
+                <h3>Facial</h3>
+                <p>Revitalizing treatments to keep your skin glowing.</p>
+            </div>
+            <div class="service-card">
+                <h3>Hair Spa</h3>
+                <p>Deep conditioning and scalp therapy for healthy hair.</p>
+            </div>
+            <div class="service-card">
+                <h3>Grooming</h3>
+                <p>The ultimate package for weddings and special events.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-image"></div>
+        <div class="about-content">
+            <h2 class="section-title" style="text-align: left;">Crafting Confidence Since [Year]</h2>
+            <p>With over 10 years of experience, we pride ourselves on providing a luxury environment where you can relax and transform. Our stylists are trained in the latest global trends to ensure you leave looking your absolute best.</p>
+            <br>
+            <p><strong>✓ 100% Customer Satisfaction</strong></p>
+            <p><strong>✓ Expert Certified Stylists</strong></p>
+            <p><strong>✓ Premium Global Products</strong></p>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <h2 class="section-title" style="text-align: center;">Our Work</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1621605815841-aa897af68832?auto=format&fit=crop&w=500&q=60" alt="Salon Work"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1593702275677-f916c6c70ef4?auto=format&fit=crop&w=500&q=60" alt="Salon Work"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=60" alt="Salon Work"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1532710093739-9470acff878f?auto=format&fit=crop&w=500&q=60" alt="Salon Work"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=500&q=60" alt="Salon Work"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=500&q=60" alt="Salon Work"></div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-info">
+            <h2 class="section-title" style="text-align: left;">Visit Us</h2>
+            <p><strong>Address:</strong> [Enter Full Street Address, City]</p>
+            <p><strong>Phone:</strong> [Enter Phone Number]</p>
+            <p><strong>Hours:</strong> Mon - Sat: 10am - 8pm</p>
+            <br>
+            <a href="https://wa.me/[Phone]" class="btn" style="color: var(--text-dark); border-color: var(--accent); background: transparent;">Get Directions</a>
+        </div>
+        <iframe class="map-placeholder" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345059165!2d144.9537353153166!3d-37.81627977975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sin!4v1625000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <footer>
+        <h2>[SALON NAME]</h2>
+        <div class="footer-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>&copy; 2026 [Salon Name]. All rights reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/[Phone]" class="whatsapp-float" target="_blank">
+        <svg style="width:35px;height:35px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.66 20.15 9.3 19.8 8.1 19.14L7.81 18.98L4.67 19.8L5.5 16.71L5.32 16.43C4.6 15.27 4.22 13.92 4.22 12.54C4.22 8.01 7.73 4.34 12.26 4.34"/>
+        </svg>
+    </a>
+
+    <script>
+        // Simple Fade-in effect on scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .about-content, .gallery-item').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = "all 0.6s ease-out";
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
